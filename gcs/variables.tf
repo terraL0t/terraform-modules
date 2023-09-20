@@ -1,8 +1,3 @@
-variable "version" {
-  type = string
-  default = "~> 4.0"
-}
-
 variable "project_id" {
   type = string
 }
