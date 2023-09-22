@@ -13,5 +13,5 @@ resource "google_project_service" "compute_api" {
 resource "google_compute_shared_vpc_host_project" "host_project" {
   project = var.host-project-id
   
-  depends_on = [compute_api]
+  depends_on = [google_project_service.compute_api]
 }
