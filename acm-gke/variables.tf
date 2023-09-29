@@ -43,3 +43,7 @@ variable "policy_dir" {
   type        = string
   description = "the root directory in the repo branch that contains the resources."
 }
+
+variable "acm_version" {
+  type        = string
+}
