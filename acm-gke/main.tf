@@ -33,6 +33,9 @@ resource "google_gke_hub_membership" "membership" {
       resource_link = "//container.googleapis.com/${module.gke.cluster_id}"
     }
   }
+  depends_on = [
+    google_project_service.compute_api
+  ]
 }
 
 resource "google_gke_hub_feature" "configmanagement_acm_feature" {
