@@ -21,12 +21,18 @@ resource "google_gke_hub_membership" "membership" {
       resource_link = "//container.googleapis.com/${module.gke.cluster_id}"
     }
   }
+  depends_on = [
+    module.enabled_google_apis
+  ]
 }
 
 resource "google_gke_hub_feature" "configmanagement_acm_feature" {
   name     = "configmanagement"
   location = "global"
   provider = google-beta
+  depends_on = [
+    module.enabled_google_apis
+  ]
 }
 
 resource "google_gke_hub_feature_membership" "feature_member" {
