@@ -13,18 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-resource "google_project_service" "compute_api" {
-  project = var.project
-  service = "compute.googleapis.com"
-
-  timeouts {
-    create = "30m"
-    update = "40m"
-  }
-
-  disable_dependent_services = true
-}
-
 resource "google_gke_hub_membership" "membership" {
   provider      = google-beta
   membership_id = "membership-hub-${module.gke.name}"
@@ -33,18 +21,12 @@ resource "google_gke_hub_membership" "membership" {
       resource_link = "//container.googleapis.com/${module.gke.cluster_id}"
     }
   }
-  depends_on = [
-    google_project_service.compute_api
-  ]
 }
 
 resource "google_gke_hub_feature" "configmanagement_acm_feature" {
   name     = "configmanagement"
   location = "global"
   provider = google-beta
-  depends_on = [
-    google_project_service.compute_api
-  ]
 }
 
 resource "google_gke_hub_feature_membership" "feature_member" {
