@@ -41,4 +41,7 @@ module "gke" {
   subnetwork         = "default"
   ip_range_pods      = ""
   ip_range_services  = ""
+  depends_on = [
+    module.enabled_google_apis
+  ]
 }
